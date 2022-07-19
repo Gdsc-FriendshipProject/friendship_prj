@@ -1,4 +1,4 @@
-package com.example.friendship;
+package com.example.friendship.controller;
 
 import com.example.friendship.config.security.JwtTokenProvider;
 import com.example.friendship.entity.User;
