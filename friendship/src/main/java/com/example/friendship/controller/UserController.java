@@ -4,6 +4,7 @@ import com.example.friendship.config.security.JwtTokenProvider;
 import com.example.friendship.entity.User;
 import com.example.friendship.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RestController
 @CrossOrigin("*")
+@Slf4j
 public class UserController {
 
     private final PasswordEncoder passwordEncoder;
@@ -37,6 +39,7 @@ public class UserController {
     // 로그인
     @PostMapping("/login")
     public String login(@RequestBody Map<String, String> user) {
+        System.out.println(user);
         User member = userRepository.findByEmail(user.get("email"))
                 .orElseThrow(() -> new IllegalArgumentException("가입되지 않은 E-MAIL 입니다."));
         if (!passwordEncoder.matches(user.get("password"), member.getPassword())) {
