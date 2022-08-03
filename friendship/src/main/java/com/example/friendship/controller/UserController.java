@@ -3,7 +3,9 @@ package com.example.friendship.controller;
 import com.example.friendship.config.security.JwtTokenProvider;
 import com.example.friendship.entity.User;
 import com.example.friendship.repository.UserRepository;
+import com.example.friendship.route;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +15,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 public class UserController {
@@ -48,5 +51,11 @@ public class UserController {
         Map<String, String> result = new HashMap<>();
         result.put("result", "user ok");
         return result;
+    }
+
+    @PostMapping("/hello")
+    public void route(){
+        route route = new route();
+        System.out.println("route = " + route.myMethod());
     }
 }
