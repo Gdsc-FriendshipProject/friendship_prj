@@ -1,20 +1,34 @@
 package com.example.friendship;
 
-import com.example.friendship.dto.RegisPlansDto;
+import com.example.friendship.dto.PlacesDto;
+import com.example.friendship.dto.PlansDto;
+import com.example.friendship.entity.Places;
+import com.example.friendship.entity.Plans;
 import com.example.friendship.repository.PlanRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PlansService {
 
-    @Autowired
-    private PlanRepository planRepository;
+    private final PlanRepository planRepository;
 
-    public void regPlansService(RegisPlansDto regisPlansDto){
+   public void createPlansWithPlaces(PlansDto plansDto){
 
-        planRepository.save(regisPlansDto.toEntity());
-    }
+       Plans plans = Plans.createPlans(
+               plansDto.getPlan_title(), plansDto.getPlan_memo(), plansDto.getPlan_date(), plansDto.getPlan_img());
+
+       List<PlacesDto> places = plansDto.getPlaces();
+
+       for(PlacesDto placesDto: places){
+           Places place = Places.createPlaces(placesDto.getName(), placesDto.getMapx(), placesDto.getMapy(), plans);
+           plans.putPlace(place);
+       }
+
+       planRepository.save(plans);
+   }
+
 }

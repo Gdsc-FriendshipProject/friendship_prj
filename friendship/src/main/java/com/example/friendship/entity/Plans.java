@@ -6,11 +6,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "plan_tb2")
@@ -18,7 +17,7 @@ import java.util.List;
 public class Plans {
 
     @Id //plan 객체 pk
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long plan_no;
 
     @Column(length = 30, nullable = false)  //일정 제  목
@@ -33,9 +32,8 @@ public class Plans {
     @Column(length = 50)    //이미지 주소값
     private String plan_img;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)  //조회할 때마다 place 테이블 가져옴
-    @JoinColumn(name="plan_no")
-    private List<Place> places;
+    @OneToMany(mappedBy = "plans", cascade = CascadeType.ALL, orphanRemoval = true)  //조회할 때마다 place 테이블 가져옴
+    private List<Places> places = new ArrayList<>();
 
     @CreationTimestamp
     @Column(updatable = false)
@@ -46,19 +44,27 @@ public class Plans {
 
 
 
-   @OneToMany
-    @JoinColumn(name = "member_id")
-    private List<User> users;
-
    @Builder
-    public Plans(String plan_title, String plan_memo, String plan_date, String plan_img,
-                 List<Place> places){
+    public Plans(String plan_title, String plan_memo, String plan_date, String plan_img){
        this.plan_title = plan_title;
        this.plan_memo = plan_memo;
        this.plan_date = plan_date;
        this.plan_img = plan_img;
-       this.places = places;
    }
+
+   public static Plans createPlans(String plan_title, String plan_memo, String plan_date, String plan_img){
+       return Plans.builder()
+               .plan_title(plan_title)
+               .plan_date(plan_date)
+               .plan_img(plan_img)
+               .plan_memo(plan_memo)
+               .build();
+   }
+
+   public void putPlace(Places places){
+       this.places.add((places));
+   }
+
 
 }
 
