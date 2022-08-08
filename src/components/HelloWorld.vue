@@ -87,11 +87,12 @@ export default {
 
         this.pageNum = 0;
 
-        // 'addPlan/list/{keyword}/{pageNum}'
-        // 'addPlan/list/all/0'
-        // 'addPlan/list/all/1'
+        // 'list/{keyword}/{pageNum}'
+        // 'list//0'
+        // 'list/all/0'
+        // 'list/all/1'
 
-        axios.get('http://localhost:8081/addPlan/list/'+ this.keyword+ "/" + this.pageNum)
+        axios.get('http://localhost:8081/list/'+ this.keyword+ "/" + this.pageNum)
           .then((res) => {
             this.plans = res.data;
             this.pageNum++;
@@ -103,7 +104,7 @@ export default {
 
     },
     infiniteHandler($state) {
-      axios.get('http://localhost:8081/addPlan/list/'+ this.keyword + this.pageNum)
+      axios.get('http://localhost:8081/list/'+ this.keyword + this.pageNum)
       .then(res =>{
         setTimeout(() => {
           if(res.data.length){
@@ -128,7 +129,7 @@ export default {
     this.token = sessionStorage.getItem('login_session');
   },
   created(){
-    axios.get('http://localhost:8081/addPlan/list/' + this.pageNum)
+    axios.get('http://localhost:8081/list/' + this.pageNum)
     .then((res) => {
       this.plans = res.data;
       this.pageNum++;

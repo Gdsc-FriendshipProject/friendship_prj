@@ -17,7 +17,7 @@ import java.util.List;
 public class Plans {
 
     @Id //plan 객체 pk
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long plan_no;
 
     @Column(length = 30, nullable = false)  //일정 제  목

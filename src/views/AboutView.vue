@@ -1,7 +1,6 @@
 <template>
   <div class="about" id="horizen">
     <div>
-      <img alt="Vue logo" src="../assets/logo.png" class="logo">
       <add-plan></add-plan>
       <!-- <date-calendar></date-calendar> -->
       <!-- <detail-tab></detail-tab> -->
@@ -28,14 +27,6 @@ export default {
 #horizen{
   float: left;
 }
-.logo {
-  padding-top: 1vw;
-  padding-bottom:5vw;
-  padding-left: 1vw;
 
-  float: left;
-}
-img{
-  width: 6vw;
-}
+
 </style>
