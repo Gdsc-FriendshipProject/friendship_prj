@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import AboutView from '../views/AboutView.vue'
+import MainpageView from '../views/MainPageVIew.vue'
+import AddplanView from '../views/AddPlanView.vue'
 
 
 Vue.use(VueRouter)
@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView,
+    component: MainpageView,
     meta :{authRequired: true},
 
     beforeEnter: function(_to, _from, next) {
@@ -28,7 +28,7 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    component: AboutView,
+    component: AddplanView,
   },
   {
     path: '/signup',

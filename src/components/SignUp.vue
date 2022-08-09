@@ -36,19 +36,20 @@ export default {
 				email: this.email,
 				password: this.password,
 			};
-			const { data } = await registerUser(userData);
-			console.log(data);
-
-			var check = (this.email != null) && (this.password != null);
+			var check = (this.email !== '') && (this.password !== '');
 			
 			if(check){
-				alert("로그인 후 이용해주세요.");
+				alert("가입이 완료되었습니다.");
+        const { data } = await registerUser(userData);
+        console.log(data);
 				this.initForm();
 				this.$router.push('/login');
-			}else{
-				alert("비밀번호를 확인해주세요");
-				this.initPassword();
-			}
+			}else if(this.email === '') {
+        alert("가입하실 이메일을 입력해주세요.");
+        // this.initPassword();
+      }else{
+        alert("이메일 혹은 비밀번호를 확인해주세요");
+      }
 			console.log(check);
 			
 		},
