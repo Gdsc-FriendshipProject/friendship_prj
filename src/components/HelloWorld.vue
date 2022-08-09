@@ -1,5 +1,9 @@
 <template>
   <div class="main">
+    <div class="main_header">
+      <img alt="Vue logo" src="../assets/logo.png" class="main_logo">
+      <button v-on:click="goAddPlan" class="addplan_btn">일정 만들기</button>
+    </div>
     <div class="search">
       <b-form-input 
         type="text"
@@ -13,27 +17,40 @@
         <b-icon icon="search" class="search_icon"></b-icon>
       </b-button>
     </div>
-    <div>
-      <button v-on:click="goAddPlan" class="addplan_btn">Make Plans</button>
-    </div>
     <div class="plan_card">
-      <div>
+      <div class="table_div">
         <table class="table_card">
           <div v-if="show" ref="planWrapper" class="planWrapper">
           <div v-for="(plan, idx) in plans" :key="idx">
             <tr class="tr_card">
               <td v-for="(index) in plan" :key="index" class="td_card">
                 <b-card
-                title="일정 제목"
                 img-src='./date.png'
                 img-alt="Image"
                 img-top
                 tag="article"
                 class="mb-2">
-                  <b-card-text>{{index}}</b-card-text>
+                  <b-card-body class="main_card_body">
+                    <div class="main_card_body_div">
+                      <table class="main_card_table">
+                        <tr>
+                          <td class="main_semi_title">제 목</td>
+                          <td colspan="2" style="width: 15vw">qdfgdfw</td>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="main_card_body_div">
+                      <table class="main_card_memo">
+                        <tr>
+                          <td class="main_semi_memo">메 모</td>
+                          <td colspan="2" style="width: 15vw">qdfgdfdw</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </b-card-body>
                   <template>
                     <div>
-                      <b-button v-b-toggle="'sidebar'+index" v-on:click="setIndex(index)">자세히 보기</b-button>
+                      <b-button v-b-toggle="'sidebar'+index" class="main_detail" v-on:click="setIndex(index)">자세히 보기</b-button>
                       <b-sidebar v-bind:id="'sidebar'+index" title="Detail" right shadow>
                         <div class="px-3 py-2">
                           <p>
@@ -140,8 +157,25 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@font-face {
+  font-family: 'Jua';
+  src: url('@/assets/fonts/Jua-Regular.ttf') format('truetype');
+}
+
 .main{
   margin: auto;
+}
+.main_header{
+  display: flex;
+  justify-content: space-between;
+}
+.main_logo {
+  margin-top: 4vw;
+  margin-bottom: 1vw;
+  margin-left: 13vw;
+
+  float: left;
+  width: 6vw;
 }
 
 .search{
@@ -152,47 +186,47 @@ export default {
 }
 .search_plan{
   width: 70vw;
-  height: 7vw;
+  height: 5vw;
   left: 354px;
   top: 336px;
 
-  border: #F58498 !important;
-  border: 1ch !important;
+  border: 0.3vw solid #4CC2CC !important;
 
-  font-size: 4vw;
+  font-size: 3vw;
+
+  font-family: 'Jua',sans-serif;
 }
 .search_btn{
-  width: 7vw;
-  height: 7vw;
+  width: 5vw;
+  height: 5vw;
   left: 354px;
   top: 336px;
 
-  background-color: #F58498;
-  border: 0ch;
+  background-color: #4CC2CC;
+  border: 0;
 }
 .search_icon{
-  width: 4.5vw;
-  height: 4.5vw;
+  width: 70%;
+  height: 70%;
 }
 
 .addplan_btn{
-  float: right;
+  background-color: #F58498;
 
-  background-color: #F5BB57;
-
-  margin-top: 2.5vw;
-  /* padding-top: 0.3vw; */
+  margin-top: 4.7vw;
+  margin-bottom: 0.3vw;
   margin-right: 12vw;
+
   border: none;
   border-radius: 5px;
 
   width: auto;
-  height: auto;
+  height: 3vw;
 
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 2vw;
-  font-weight: bold;
+  font-family: 'Jua', sans-serif;
+  font-size: 1.5vw;
+  /*font-weight: bold;*/
 }
 .plan_card{
   clear: both;
@@ -203,14 +237,59 @@ export default {
   display: flex;
   justify-content: center;
 }
-
+.card-img-top{
+  width: 12vw;
+  align-self: center;
+}
+.table_div{
+  border-radius: 5px;
+  border: 0.3vw solid #4CC2CC;
+}
 .table_card{
-  width: 77vw;
+  width: 74.5vw;
 }
 .td_card{
   /* align-items: center; */
-  padding: 2vw;
+  padding: 1vw;
   width: 27vw;
   margin: 10vw;
+}
+.main_card_body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  font-family: Jua, sans-serif;
+  font-size: 1vw;
+}
+.main_card_body_div{
+  border-radius: 5px;
+  border: 0.3vw solid !important;
+  border-color: #4CC2CC !important;
+
+  margin-bottom: 0.3vw;
+}
+.main_card_table, .main_card_memo{
+  border-collapse: collapse;
+  margin: -0.1vw;
+  float: left;
+}
+.main_semi_title, .main_semi_memo{
+  background-color: #4CC2CC;
+  border: 0.3vw solid #4CC2CC !important;
+  padding-top: 0.28vw;
+
+  width: 3vw;
+
+  font-size: 1vw;
+  color: white;
+}
+.main_detail{
+  background-color: #F5BB57 !important;
+  border: 0.3vw solid #F5BB57 !important;
+
+  color: white;
+  font-family: 'Jua', sans-serif;
+  font-size: 1vw;
 }
 </style>

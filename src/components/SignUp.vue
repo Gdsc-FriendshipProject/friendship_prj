@@ -68,9 +68,14 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: 'Jua';
+  src: url('@/assets/fonts/Jua-Regular.ttf') format('truetype');
+}
+
 * {
   box-sizing: border-box;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Jua', sans-serif;
   border-radius: 5px;
 }
  

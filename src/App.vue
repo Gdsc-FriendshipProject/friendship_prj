@@ -1,11 +1,5 @@
 <template>
   <div id="app">
-    <!-- <nav>
-      <router-link to="/">Main</router-link> | 
-      <router-link to="/about">AddPlan</router-link> | 
-      <router-link to="/signup">SignUp</router-link> | 
-      <router-link to="/login">LogIn</router-link>
-    </nav> -->
     <router-view/>
   </div>
 </template>
@@ -25,7 +19,7 @@ body {
 }
 
 nav {
-  padding: 30px;
+  padding: 5px;
 }
 
 nav a {

@@ -2,12 +2,14 @@
   <div class="accordion" role="tablist" id="sort">
     <div>
       <div class="body_top">
-        <img alt="Vue logo" src="../assets/logo.png" class="logo">
+        <img alt="Vue logo" src="../assets/logo.png" class="addPlan_logo" v-on:click="goMain()">
         <b-button class="check_plan_sidebar" v-b-toggle.sidebar-right>전체 일정 확인</b-button>
       </div>
       <b-card no-body class="mb-1">
         <b-card-header header-tag="header" class="p-1" role="tab">
-          <b-button block v-b-toggle.accordion-1 variant="info">위치 선택</b-button>
+          <b-button block v-b-toggle.accordion-1 variant="info">
+            <img alt="Vue logo" src="../assets/addPlan/plan_position.png" class="addPlan_img"> 위치 선택
+          </b-button>
         </b-card-header>
         <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
           <b-card-body>
@@ -18,7 +20,9 @@
 
       <b-card no-body class="mb-1">
         <b-card-header header-tag="header" class="p-1" role="tab">
-          <b-button block v-b-toggle.accordion-2 variant="info">날짜 선택</b-button>
+          <b-button block v-b-toggle.accordion-2 variant="info">
+            <img alt="Vue logo" src="../assets/addPlan/plan_date.png" class="addPlan_img"> 날짜 선택
+          </b-button>
         </b-card-header>
         <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
           <b-card-body>
@@ -38,7 +42,9 @@
 
       <b-card no-body class="mb-1">
         <b-card-header header-tag="header" class="p-1" role="tab">
-          <b-button block v-b-toggle.accordion-3 variant="info">일정 세부사항</b-button>
+          <b-button block v-b-toggle.accordion-3 variant="info">
+            <img alt="Vue logo" src="../assets/addPlan/plan_detail.png" class="addPlan_img"> 일정 세부사항
+          </b-button>
         </b-card-header>
         <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
           <b-card-body>
@@ -131,7 +137,7 @@
                 </tr>
               </table>
               <div>
-                <b-button type="button" v-on:click="submitForm" class="submit_btn">일정 저장</b-button>
+                <b-button type="button" v-on:click="submitForm" class="submit_btn">SAVE</b-button>
               </div>
             </div>
           </div>
@@ -222,6 +228,9 @@ export default {
       this.markerList = [];
       this.placeName = [];
     },
+    goMain(){
+      this.$router.push('/');
+    },
     onSelectIcon() {
       // console.log(this.slide);
       this.img = this.icons[this.slide].src;
@@ -278,24 +287,32 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: 'Jua';
+  src: url('@/assets/fonts/Jua-Regular.ttf') format('truetype');
+}
+
 .body_top {
   margin-top: 1vw;
 }
 
-.logo {
+.addPlan_logo {
   margin-bottom: 0.2vw;
-}
-
-img {
   width: 6vw;
+}
+.addPlan_img{
+  width: 0.6vw;
 }
 
 .check_plan_sidebar {
   margin-left: 50vw;
   /*margin-right: 3vw;*/
-  margin-bottom: 1vw;
+  margin-bottom: 0.1vw;
 
   font-weight: bold !important;
+
+  font-family: 'Jua',sans-serif;
+  font-size: 1.2vw !important;
 
   background-color: #F58498 !important;
   border: none !important;
@@ -329,7 +346,7 @@ div.vc-date {
   background-color: #4CC2CC !important;
   border: none !important;
 
-  font-family: 'Inter';
+  font-family: 'Jua', sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 3vw;
@@ -374,7 +391,7 @@ div.vc-date {
 }
 .plan_detail_p{
   text-align: left;
-  font-family: 'Inter';
+  font-family: 'Jua',sans-serif;
   font-size: 2vw;
   font-weight: bold;
   color: #4CC2CC;
@@ -385,7 +402,7 @@ div.vc-date {
 
   border: 0.3vw solid !important;
   border-color: #4CC2CC !important;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Jua', sans-serif;
   border-radius: 5px !important;
   font-size: 1.5vw;
 
@@ -398,7 +415,9 @@ div.vc-date {
   background: #F58498 !important;
   border-radius: 5px;
 
-  width: 18vw;
+  font-family: 'Jua',sans-serif;
+
+  width: max-content;
   height: auto;
   margin-bottom: 0.8vw;
 
@@ -423,11 +442,14 @@ div.vc-date {
   background: #4CC2CC;
   width: 6vw;
 
-  font-weight: bold;
-  font-family: 'Inter';
+  padding-top: 0.3vw;
+
+  font-weight: normal;
+  font-family: 'Jua', sans-serif;
   font-style: normal;
   text-align: center;
 
+  font-size: 1vw;
   color: white;
 }
 .tot_marker{
@@ -448,7 +470,7 @@ div.vc-date {
   border: none !important;
 
   font-weight: bold !important;
-  font-family: 'Inter' !important;
+  font-family: 'Jua',sans-serif !important;
   font-style: normal;
   text-align: center;
 

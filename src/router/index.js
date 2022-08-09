@@ -37,8 +37,19 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'lonin',
+    name: 'login',
     component: () => import('@/components/LogIn.vue'),
+    meta :{authRequired: true},
+
+    beforeEnter: function(_to, _from, next) {
+      var loginToken = sessionStorage.getItem("login_session");
+      if(loginToken !== null){
+        sessionStorage.removeItem("login_session");
+        next();
+      }else{
+        next();
+      }
+    }
   },
   {
     path: '/infinite',

@@ -561,11 +561,13 @@ export default {
 
 .check_sidebar{
   float: right;
-  margin-bottom: 1vw;
-  margin-top: 1vw;
+  margin-bottom: 0.5vw;
+  margin-top: 0.5vw;
 
-  font-weight: bold !important;
+  font-weight: lighter !important;
   background-color: #F5BB57 !important;
+  font-family: 'Jua',sans-serif;
+  font-size: 1vw !important;
   border: none !important;
 }
 .sidebar{

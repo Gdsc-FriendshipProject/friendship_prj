@@ -1,7 +1,11 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" class="logo">
-    <HelloWorld msg="Welcome to Your Vue.js App" class="hello_component"/>
+  <div>
+    <nav>
+      <router-link to="login" class="nav_router_link">로그아웃</router-link>
+    </nav>
+    <div class="home">
+      <HelloWorld msg="Welcome to Your Vue.js App" class="hello_component"/>
+    </div>
   </div>
 </template>
 
@@ -13,22 +17,26 @@ export default {
   name: 'HomeView',
   components: {
     HelloWorld
+  },
+  methods:{
+
   }
 }
 </script>
 
 <style scoped>
-.logo {
-  padding-top: 1vw;
-  padding-bottom: 10vw;
-  padding-left: 1vw;
-
-  float: left;
-}
-img{
-  width: 6vw;
+@font-face {
+  font-family: 'Jua';
+  src: url('@/assets/fonts/Jua-Regular.ttf') format('truetype');
 }
 .hello_component{
   clear: both;
+}
+.nav_router_link{
+  float: right;
+  margin-top: 0.2vw;
+  margin-right: 0.4vw;
+
+  font-family: Jua, sans-serif;
 }
 </style>
