@@ -9,7 +9,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'main',
     component: MainpageView,
     meta :{authRequired: true},
 
@@ -26,8 +26,8 @@ const routes = [
     }
   },
   {
-    path: '/about',
-    name: 'about',
+    path: '/addPlan',
+    name: 'addPlan',
     component: AddplanView,
   },
   {

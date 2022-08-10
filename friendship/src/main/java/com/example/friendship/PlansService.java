@@ -6,6 +6,8 @@ import com.example.friendship.entity.Places;
 import com.example.friendship.entity.Plans;
 import com.example.friendship.repository.PlanRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,5 +32,8 @@ public class PlansService {
 
        planRepository.save(plans);
    }
+   public Page<Plans> getAllPlans(Pageable pageable){      //일정 전부 받아오는 메소드
 
+       return planRepository.findAll(pageable);
+   }
 }
